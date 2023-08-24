@@ -19,6 +19,14 @@ const student2: Student = {
     location: "Planet Frieza 113"
 }
 
-const studentsList: Array<Student> = [student1, student2];
+const studentList: Array<Student> = [student1, student2];
 
-const tabelBody: HTMLElement = document.querySelector('tbody');
+const table = document.createElement("table");
+
+document.body.appendChild(table);
+studentList.forEach((student): void => {
+    const row = document.createElement("tr");
+    
+    row.innerHTML = `${student.firstName} ${student.location}`;
+    table.appendChild(row);
+})
