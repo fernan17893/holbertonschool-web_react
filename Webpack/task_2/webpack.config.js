@@ -4,7 +4,7 @@ module.exports = {
     entry: './js/dashboard_main.js',
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: 'bundle'
     },
     module: {
         rules: [
@@ -15,6 +15,7 @@ module.exports = {
             {
                 test: /\.(png|jpg|gif|svg)$/i,
                 type: 'asset/resource',
+                use: [ 'file-loader', 'image-webpack-loader' ]
             },
         ],
     },
