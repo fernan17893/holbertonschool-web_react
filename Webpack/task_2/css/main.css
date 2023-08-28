@@ -1,0 +1,15 @@
+button {
+    text-align: right;
+}
+
+button > span {
+    font-weight: bold;
+}
+
+#logo {
+    width: 200px;
+    height: 200px;
+    background: url(../assets/holberton-logo.png);
+    background-position: center;
+    background-size: contain;
+}
