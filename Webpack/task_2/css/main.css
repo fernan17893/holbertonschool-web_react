@@ -3,6 +3,7 @@ button {
 }
 
 button > span {
+    font-style: normal;
     font-weight: bold;
 }
 
