@@ -1,0 +1,18 @@
+.App-header {
+  display: flex;
+  align-items: center;
+  color: red;
+  border-bottom: 5px solid red;
+}
+
+.App-body {
+  margin-top: 50px;
+}
+
+.App-footer {
+  margin-top: 25%;
+  border-top: 5px solid red;
+  display: flex;
+  justify-content: center;
+}
+
