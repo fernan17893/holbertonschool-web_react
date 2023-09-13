@@ -1,0 +1,12 @@
+.App-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    color: red;
+  }
+  
+
+.App-header h1 {
+	margin: auto auto auto 0;
+	color: red;
+}
