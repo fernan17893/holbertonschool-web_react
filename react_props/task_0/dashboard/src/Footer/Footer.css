@@ -1,0 +1,7 @@
+
+.App-footer {
+    margin-top: 25%;
+    border-top: 5px solid red;
+    display: flex;
+    justify-content: center;
+  }
