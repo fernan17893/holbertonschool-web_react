@@ -16,18 +16,22 @@ class App extends Component {
     super(props);
     this.state = {
       displayDrawer: false,
-    }
+    };
     this.ctrlHEventHandler = this.ctrlHEventHandler.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
-  }
+  };
 
-  handleDisplayDrawer() { 
-    this.setState({ displayDrawer: true });
+  handleDisplayDrawer() {
+    this.setState({
+      displayDrawer: true,
+    });
   };
 
   handleHideDrawer() {
-    this.setState({ displayDrawer: false });
+    this.setState({
+      displayDrawer: false,
+    });
   };
 
   ctrlHEventHandler(e) {
@@ -56,6 +60,10 @@ class App extends Component {
     let {
       isLoggedIn,
     } = this.props;
+
+    let {
+      displayDrawer
+    } = this.state;
 
     let i = 0;
     
@@ -99,11 +107,11 @@ class App extends Component {
       <Fragment>
         <div className={css(styles.app)}>
           <div className={css(styles.upperside)}>
-            <Notifications 
-            listNotifications={listNotifications}
-            displayDrawer={displayDrawer}
-            handleDisplayDrawer={this.handleDisplayDrawer}
-            handleHideDrawer={this.handleHideDrawer}
+            <Notifications
+              listNotifications={listNotifications}
+              displayDrawer={displayDrawer}
+              handleDisplayDrawer={this.handleDisplayDrawer}
+              handleHideDrawer={this.handleHideDrawer}
             />
             <Header />
           </div>
