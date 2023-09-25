@@ -9,32 +9,6 @@ import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.ctrlHEventHandler = this.ctrlHEventHandler.bind(this);
-  }
-
-  ctrlHEventHandler(e) {
-    let k = e.key;
-    if ((e.metaKey || e.ctrlKey) && k === 'h') {
-      e.preventDefault();
-      alert('Logging you out');
-      this.props.logOut();
-    }
-  };
-
-  handleKeyPressDown() {
-    document.addEventListener("keydown", this.ctrlHEventHandler, false);
-  };
-
-  componentDidMount() {
-    this.handleKeyPressDown();
-  };
-
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.ctrlHEventHandler, false);
-  };
-
   render() {
 
     let {
@@ -101,13 +75,8 @@ class App extends Component {
   };
 };
 
-App.propTypes = {
-  logOut: PropTypes.func,
-};
-
 App.defaultProps = {
   isLoggedIn: false,
-  logOut: () => {},
 };
 
 export default App;
