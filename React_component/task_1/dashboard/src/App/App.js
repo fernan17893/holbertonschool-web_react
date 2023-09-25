@@ -24,7 +24,7 @@ class App extends Component {
   };
 
   handleKeyPressDown() {
-    document.addEventListener("keydown", this.ctrlHEventHandler, false);
+    document.addEventListener('keydown', this.ctrlEventHandler, false);
   };
 
   componentDidMount() {
@@ -32,7 +32,7 @@ class App extends Component {
   };
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.ctrlHEventHandler, false);
+    document.removeEventListener('keydown', this.ctrlEventHandler, false);
   };
 
   render() {
@@ -102,7 +102,7 @@ class App extends Component {
 };
 
 App.propTypes = {
-  logOut: PropTypes.func,
+  logOut: PropTypes.func
 };
 
 App.defaultProps = {
