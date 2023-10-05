@@ -8,7 +8,6 @@ import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
-import { StyleSheetTestUtils, } from 'aphrodite';
 
 configure({adapter: new Adapter()});
 
@@ -18,11 +17,6 @@ describe("Testing the <App /> Component", () => {
 
 	beforeEach(() => {
 		wrapper = shallow(<App />);
-		StyleSheetTestUtils.suppressStyleInjection();
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 	});
 
 	it("<App /> is rendered without crashing", () => {

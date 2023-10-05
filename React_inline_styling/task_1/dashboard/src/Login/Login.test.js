@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import Login from './Login';
-import { StyleSheetTestUtils, } from 'aphrodite';
 
 configure({adapter: new Adapter()});
 
@@ -13,11 +12,6 @@ describe("Testing the <Login /> Component", () => {
 
 	beforeEach(() => {
 		wrapper = shallow(<Login shouldRender />);
-		StyleSheetTestUtils.suppressStyleInjection();
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 	});
 
 	it("<Login /> is rendered without crashing", () => {

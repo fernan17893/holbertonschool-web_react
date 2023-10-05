@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import Header from './Header';
-import { StyleSheetTestUtils, } from 'aphrodite';
 
 configure({adapter: new Adapter()});
 
@@ -13,11 +12,6 @@ describe("Testing the <Header /> Component", () => {
 
 	beforeEach(() => {
 		wrapper = shallow(<Header shouldRender />);
-		StyleSheetTestUtils.suppressStyleInjection();
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 	});
 
 	it("<Header /> is rendered without crashing", () => {

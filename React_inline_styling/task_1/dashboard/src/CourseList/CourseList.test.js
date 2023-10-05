@@ -3,19 +3,11 @@ import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import CourseList from './CourseList';
-import { StyleSheetTestUtils } from 'aphrodite';
+import CourseListRow from './CourseListRow';
 
 configure({adapter: new Adapter()});
 
 describe("Testing the <CourseList /> Component", () => {
-
-	beforeEach(() => {
-		StyleSheetTestUtils.suppressStyleInjection();
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-	});
 
 	it("Test if <CourseList /> is rendered without crashing", () => {
 

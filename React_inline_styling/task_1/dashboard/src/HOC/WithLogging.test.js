@@ -3,10 +3,8 @@ import chai, { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, mount } from 'enzyme';
 import WithLogging from './WithLogging.js';
-import sinonChai from 'sinon-chai';
 import { spy } from 'sinon';
 import Login from '../Login/Login.js';
-import { StyleSheetTestUtils, } from 'aphrodite';
 
 chai.use(sinonChai);
 
@@ -17,14 +15,6 @@ configure({
 let log = spy(console, 'log');
 
 describe("Testing the <WithLogging /> Component", () => {
-
-	beforeEach(() => {
-		StyleSheetTestUtils.suppressStyleInjection();
-	});
-
-	afterEach(() => {
-		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-	});
 
 	it("Renders the correct children with pure html as a child", () => {
 		let wrapper = mount(
