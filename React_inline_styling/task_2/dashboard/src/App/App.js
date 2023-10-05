@@ -5,10 +5,9 @@ import Login from '../Login/Login.js';
 import Footer from '../Footer/Footer.js';
 import Notifications from '../Notifications/Notifications.js';
 import CourseList from '../CourseList/CourseList';
+import BodySection from '../BodySection/BodySection';
 import { getLatestNotification } from '../utils/utils';
-import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom.js';
-import BodySection from '../BodySection/BodySection.js';
-import WithLogging from '../HOC/WithLogging.js';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import { StyleSheet, css } from 'aphrodite';
 
 class App extends Component {
@@ -27,7 +26,7 @@ class App extends Component {
   };
 
   handleKeyPressDown() {
-    document.addEventListener("keydown", this.ctrlHEventHandler, false);
+    document.addEventListener('keydown', this.ctrlEventHandler, false);
   };
 
   componentDidMount() {
@@ -35,7 +34,7 @@ class App extends Component {
   };
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.ctrlHEventHandler, false);
+    document.removeEventListener('keydown', this.ctrlEventHandler, false);
   };
 
   render() {
@@ -84,7 +83,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <div className={css(styles.app)}>
+        <div className="App">
           <div className={css(styles.upperside)}>
             <Notifications listNotifications={listNotifications} />
             <Header />
@@ -92,20 +91,17 @@ class App extends Component {
           {
             isLoggedIn === false &&
             <BodySectionWithMarginBottom title="Log in to continue">
-              <Login />
+            <Login />
             </BodySectionWithMarginBottom>
           }
           {
             isLoggedIn === true &&
             <BodySectionWithMarginBottom title="Course list">
-              <CourseList listCourses={listCourses} />
+            <CourseList listCourses={listCourses} />
             </BodySectionWithMarginBottom>
           }
-          <BodySection title="News from the school">
-            <p>
-              Ipsum anim sunt qui ullamco do consequat reprehenderit
-              aliqua fugiat proident amet duis.
-            </p>
+          <BodySection title="News from the School">
+            <p>Some random text</p>
           </BodySection>
           <Footer />
         </div>
@@ -115,38 +111,17 @@ class App extends Component {
 };
 
 const styles = StyleSheet.create({
-  app: {
-    position: 'relative',
-    minHeight: '100vh',
-  },
   upperside: {
     display: "flex",
     flexDirection: "row-reverse",
     width: "100%",
-    borderBottom: `3px solid var(--holberton-red)`,
+    borderBottom: "3px solid red",
     justifyContent: "space-between",
-  }
+}
 });
 
-// const globalStyles = StyleSheet.create({
-//   globals: {
-//     ':root': {
-//       '--holberton-red': '#e1484c',
-//     },
-//     'body': {
-//       maxWidth: '90%',
-//       margin: '0 auto',
-//     },
-//     'div': {
-//       padding: '2px 8px',
-//     },
-//   },
-// });
-
-// css(globalStyles.globals);
-
 App.propTypes = {
-  logOut: PropTypes.func,
+  logOut: PropTypes.func
 };
 
 App.defaultProps = {

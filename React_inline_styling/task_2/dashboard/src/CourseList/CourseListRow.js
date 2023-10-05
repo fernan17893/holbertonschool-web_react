@@ -13,30 +13,30 @@ class CourseListRow extends Component {
 
 		if (isHeader === true && textSecondCell == null) {
 			return (
-				<tr className={css(styles.headerRowBG)} >
-					<th className={css(styles.tableData)} colSpan={2}>
+				<tr className={css(styles.header)}>
+					<th colSpan={2}>
 						{textFirstCell}
 					</th>
 				</tr>
 			);
 		} else if (isHeader === true && textSecondCell != null) {
 			return (
-				<tr className={css(styles.rowBG)} >
-					<th className={css(styles.tableData)}>
+				<tr className={css(styles.row)}>
+					<th>
 						{textFirstCell}
 					</th>
-					<th className={css(styles.tableData)}>
+					<th>
 						{textSecondCell}
 					</th>
 				</tr>
 			);
 		} else if (isHeader === false) {
 			return (
-				<tr className={css(styles.rowBG)} >
-					<td className={css(styles.tableData)}>
+				<tr className={css(styles.row)}>
+					<td>
 						{textFirstCell}
 					</td>
-					<td className={css(styles.tableData)}>
+					<td>
 						{textSecondCell}
 					</td>
 				</tr>
@@ -46,18 +46,16 @@ class CourseListRow extends Component {
 };
 
 const styles = StyleSheet.create({
-	rowBG: {
-		backgroundColor: "#f5f5f5ab",
+	row: {
+		backgroundColor: '#f5f5f5ab',
 	},
-	headerRowBG: {
-		backgroundColor: "#deb5b545",
-	},
-	tableData: {
-		borderBottom: '2px solid lightgrey',
+	header: {
+		backgroundColor: '#deb5b545',
 	},
 });
 
-CourseListRow.propTypes = {
+
+CourseListRow.protoTypes = {
 	isHeader: PropTypes.bool,
 	textFirstCell: PropTypes.string.isRequired,
 	textSecondCell: PropTypes.oneOfType([

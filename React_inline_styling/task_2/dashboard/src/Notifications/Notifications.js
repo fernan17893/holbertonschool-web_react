@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
-import PropTypes from 'prop-types';
 import NotificationItemShape from './NotificationItemShape';
-import { StyleSheet, css } from 'aphrodite';
+import PropTypes from 'prop-types';
+import { css, StyleSheet } from 'aphrodite';
 
 class Notifications extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class Notifications extends Component {
 	};
 
 	shouldComponentUpdate(nextProps) {
-		if (this.props.listNotifications.length < nextProps.listNotifications.length) {
+		if (nextProps.listNotifications.length > this.props.listNotifications.length) {
 			return true;
 		}
 		return false;
@@ -22,20 +22,21 @@ class Notifications extends Component {
 		console.log(`Notification ${id} has been marked as read`);
 	};
 
+
 	render() {
 		let {
 			displayDrawer,
-			listNotifications,
+			listNotifications
 		} = this.props;
 
 		return (
 			<div className="NotificationsComponent">
-				<div className={css(styles.menuItem)}>
+				<div className={css(style.menuItem)}>
 					Your notifications
 				</div>
 				{
 					displayDrawer &&
-					<div className={css(styles.notifications)}>
+					<div className={css(style.Notifications)}>
 						<button
 							style={{
 								color: '#3a3a3a',
@@ -66,48 +67,45 @@ class Notifications extends Component {
 						{
 							listNotifications.length > 0 &&
 							<Fragment>
-								<p>
-									Here is the list of notifications
-								</p>
+								<p>Here is the list of notifications</p>
 								<ul>
-									{	
-										listNotifications.map((notif) => {
+									{
+										listNotifications.map((notification) => {
 											return (
 												<NotificationItem
-													key={notif.id}
-													id={notif.id}
-													type={notif.type}
-													value={notif.value}
-													html={notif.html}
+													key={notification.id}
+													type={notification.type}
+													value={notification.value}
+													html={notification.html}
 													markAsRead={this.markAsRead}
 												/>
 											)
 										})
 									}
-								</ul>
-							</Fragment>
-						}
-					</div>
+									</ul>
+								</Fragment>
 				}
 			</div>
+	}
+	</div>
 		);
 	};
 };
 
-const styles = StyleSheet.create({
-	notifications: {
-		border: `2px dotted var(--holberton-red)`,
+const style = StyleSheet.create({
+	Notifications: {
+		border: '2px dotted red',
 		padding: '6px 12px',
-		position: 'relative',
 		marginTop: '12px',
+		position: 'relative',
 	},
 	menuItem: {
-		textAlign: 'right',
+		textalign: 'right',
 		fontWeight: 'bold',
 	},
 });
 
-Notifications.propTypes = {
+Notifications.protoTypes = {
 	displayDrawer: PropTypes.bool,
 	listNotifications: PropTypes.arrayOf(NotificationItemShape),
 };
