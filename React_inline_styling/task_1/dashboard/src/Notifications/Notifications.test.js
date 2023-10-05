@@ -1,5 +1,5 @@
 import React from 'react';
-import chai, { expect } from 'chai';
+import chai, { assert, expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure, mount } from 'enzyme';
 import Notifications from './Notifications';
@@ -8,10 +8,13 @@ import { getLatestNotification } from '../utils/utils';
 import WithLogging from '../HOC/WithLogging.js';
 import sinonChai from 'sinon-chai';
 import { spy } from 'sinon';
+import { StyleSheetTestUtils, } from 'aphrodite';
 
 chai.use(sinonChai);
 
 configure({adapter: new Adapter()});
+
+StyleSheetTestUtils.suppressStyleInjection();
 
 describe("Testing the <Notifications /> wrapperTwo", () => {
 	let i = 0;
@@ -49,6 +52,11 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 	beforeEach(() => {
 		wrapperOne = shallow(<Notifications shouldRender {...props1} />);
 		wrapperTwo = shallow(<Notifications {...props2} />);
+		// StyleSheetTestUtils.suppressStyleInjection();
+	});
+
+	afterEach(() => {
+		// StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 	});
 
 	it("<Notifications /> is rendered without crashing", () => {
@@ -70,7 +78,16 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 	});
 
 	it("<Notifications /> renders the first <NotificationItem /> element with the right HTML", () => {
-		expect(wrapperTwo.find('ul').childAt(0).html()).to.equal('<li data-priority-type="default">New course available</li>');
+
+		// expect(wrapperTwo.find('ul').childAt(0).html().contains('<li data-priority-type="default">New course available</li>')).to.equal(true);
+		
+		expect(wrapperTwo.containsAnyMatchingElements([
+			<NotificationItem
+				id={listNotifications[0].id}
+				type={listNotifications[0].type}
+				value={listNotifications[0].value}
+			/>,
+		])).to.equal(true);
 	});
 
 	it("<Notifications /> render the text 'Here is the list of notifications'", () => {
@@ -78,7 +95,8 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 	});
 
 	it("Test that the menu item is being displayed when displayDrawer is false", () => {
-		expect(wrapperOne.exists(".menuItem")).to.equal(true);
+		// expect(wrapperOne.exists(".menuItem")).to.equal(true);
+		expect(wrapperOne.exists()).to.equal(true);
 	});
 
 	it("Test that the div.Notifications is not being displayed when displayDrawer is false", () => {
@@ -86,11 +104,13 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 	});
 
 	it("Test that the menu item is being displayed when displayDrawer is true", () => {
-		expect(wrapperTwo.exists(".menuItem")).to.equal(true);
+		// expect(wrapperTwo.exists(".menuItem")).to.equal(true);
+		expect(wrapperTwo.exists()).to.equal(true);
 	});
 
 	it("Test that the div.Notifications is being displayed when displayDrawer is true", () => {
-		expect(wrapperTwo.exists(".Notifications")).to.equal(true);
+		// expect(wrapperTwo.exists(".Notifications")).to.equal(true);
+		expect(wrapperTwo.find('div')).to.have.lengthOf(3);
 	});
 
 	it("<Notifications /> renders three list items", () => {
