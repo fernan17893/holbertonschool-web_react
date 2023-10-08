@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
-import PropTypes from 'prop-types';
 import NotificationItemShape from './NotificationItemShape';
-import { StyleSheet, css } from 'aphrodite';
+import PropTypes from 'prop-types';
+import { css, StyleSheet } from 'aphrodite';
 
 class Notifications extends Component {
 	constructor(props) {
@@ -25,25 +25,25 @@ class Notifications extends Component {
 		console.log(`Notification ${id} has been marked as read`);
 	};
 
+
 	render() {
 		let {
 			displayDrawer,
 			listNotifications,
 			handleDisplayDrawer,
-			handleHideDrawer
+			handleHideDrawer,
 		} = this.props;
 
 		return (
 			<div className="NotificationsComponent">
-				<div
-					className={`menuItem ${css(styles.menuItem)}`}
+				<div className={`menuItem ${css(style.menuItem)}`}
 					onClick={() => handleDisplayDrawer()}
 				>
 					Your notifications
 				</div>
 				{
 					displayDrawer &&
-					<div className={css(styles.notifications)}>
+					<div className={css(style.Notifications)}>
 						<button
 							style={{
 								color: '#3a3a3a',
@@ -59,8 +59,7 @@ class Notifications extends Component {
 							}}
 							aria-label="Close"
 							onClick={(e) => {
-								// console.log('Close button has been clicked');
-								handleHideDrawer()
+								handleHideDrawer();
 							}}
 						>
 							<img
@@ -75,35 +74,32 @@ class Notifications extends Component {
 						{
 							listNotifications.length > 0 &&
 							<Fragment>
-								<p>
-									Here is the list of notifications
-								</p>
+								<p>Here is the list of notifications</p>
 								<ul>
-									{	
-										listNotifications.map((notif) => {
+									{
+										listNotifications.map((notification) => {
 											return (
 												<NotificationItem
-													key={notif.id}
-													id={notif.id}
-													type={notif.type}
-													value={notif.value}
-													html={notif.html}
+													key={notification.id}
+													type={notification.type}
+													value={notification.value}
+													html={notification.html}
 													markAsRead={this.markAsRead}
 												/>
 											)
 										})
 									}
-								</ul>
-							</Fragment>
-						}
-					</div>
+									</ul>
+								</Fragment>
 				}
 			</div>
+	}
+	</div>
 		);
 	};
 };
 
-const opacityFrame = {
+const opacityKeyframes = {
 	'0%': {
 		opacity: .5,
 	},
@@ -115,59 +111,45 @@ const opacityFrame = {
 	},
 };
 
-const bounceFrame = {
+const bounceKeyframes = {
 	'0%': {
 		transform: 'translateY(0)',
 	},
 	'50%': {
-			transform: 'translateY(-10px)',
+		transform: 'translateY(-10px)',
 	},
 	'100%': {
-			transform: 'translateY(0)',
+		transform: 'translateY(0)',
 	},
 };
 
-const styles = StyleSheet.create({
-	notifications: {
-		border: `2px dotted var(--holberton-red)`,
+const style = StyleSheet.create({
+	Notifications: {
+		border: '2px dotted red',
 		padding: '6px 12px',
-		position: 'relative',
 		marginTop: '12px',
-		fontSize: '20px',
-		position: 'absolute !important',
-		top: '-2px',
-		right: '0',
-		left: '0',
-		background: '#fff8f8',
+		position: 'relative',
 		'@media (max-width: 900px)': {
 			position: 'absolute !important',
 			top: '0',
 			right: '0',
 			left: '0',
-			background: '#fff8f8',
+			background: 'white',
 		},
 	},
 	menuItem: {
-		textAlign: 'right',
+		textalign: 'right',
 		fontWeight: 'bold',
 		pointer: 'cursor',
-		background: '#fff8f8',
 		':hover': {
-			animationName: [opacityFrame, bounceFrame],
-			animationDuration: '1s, .5s',
+			animationName: [opacityKeyframes, bounceKeyframes],
+			animationDuration: '1s, 0.5s',
 			animationIterationCount: '3',
-		}
+		},
 	},
-	// globals: {
-	// 	'*ul': {
-	// 		paddingLeft: 0,
-	// 	},
-	// },
 });
 
-// css(styles.globals);
-
-Notifications.propTypes = {
+Notifications.protoTypes = {
 	displayDrawer: PropTypes.bool,
 	listNotifications: PropTypes.arrayOf(NotificationItemShape),
 	displayDrawer: PropTypes.bool,

@@ -1,24 +1,30 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class WithLogging extends Component {
-	constructor(props) {
-		super(props);
-	};
+    constructor(props) {
+        super(props);
+    }
 
-	componentDidMount() {
-		// console.log(this.props);
-		let compName = this.props.children.type.name || 'Component';
-		console.log(`Component ${compName} is mounted`);
-	};
+    componentDidMount() {
+        console.log(`Component ${this.props.displayName} is mounted`);
+    }
 
-	componentWillUnmount() {
-		let compName = this.props.children.type.name || 'Component';
-		console.log(`Component ${compName} is going to unmount`);
-	};
+    componentWillUnmount() {
+        console.log(`Component ${this.props.displayName} is going to unmount`);
+    }
 
-	render() {
-		return (this.props.children);
-	};
-};
+    render() {
+        const {
+            children,
+        } = this.props;
+
+        return (
+            <>
+                {children}
+            </>
+        );
+    }
+}
 
 export default WithLogging;
